@@ -52,8 +52,8 @@ public class MyCustomAdapter extends ArrayAdapter{
         }
 
         ToDo element_ajoute= todo.get(position);
-        holder.todoName.setText("Quoi : " +  element_ajoute.getName() + "");
-        holder.todoDetail.setText("Détails : "+ element_ajoute.getDetail()+"");
+        holder.todoName.setText(element_ajoute.getName());
+        holder.todoDetail.setText("Détails : "+ element_ajoute.getDetail());
         holder.todoDate.setText("Quand : "+element_ajoute.getDate());
         return convertView;
 

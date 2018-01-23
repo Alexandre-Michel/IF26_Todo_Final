@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/label_modify_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Quoi ?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/modify_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/label_modify_name" />
+
+    <TextView
+        android:id="@+id/label_detail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modify_name"
+        android:layout_marginTop="54dp"
+        android:fontFamily="sans-serif"
+        android:text="Détails"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/modify_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/label_detail_name" />
+
+
+    <TextView
+        android:id="@+id/label_date_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modify_detail"
+        android:layout_marginTop="54dp"
+        android:fontFamily="sans-serif"
+        android:text="Date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/modify_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_date_name"
+        android:ems="10"
+        android:inputType="date" />
+
+    <Button
+        android:id="@+id/button_update"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modify_date"
+        android:text="Modifier" />
+
+    <Button
+        android:id="@+id/button_delete"
+        style="@android:style/Widget.DeviceDefault.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_update"
+        android:text="Supprimer" />
+
+
+</RelativeLayout>

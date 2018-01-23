@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".add_element"></activity>
+        <activity android:name=".modify_element"></activity>
     </application>
 
 </manifest>

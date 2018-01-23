@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class add_element extends AppCompatActivity {
 
     AutoCompleteTextView name;
@@ -22,6 +26,12 @@ public class add_element extends AppCompatActivity {
         date = findViewById(R.id.add_date);
         detail = findViewById(R.id.add_detail);
 
+        //Date du jour
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date_du_jour = new Date();
+
+        date.setText(dateFormat.format(date_du_jour));
+
     }
 
 
@@ -30,9 +40,6 @@ public class add_element extends AppCompatActivity {
         String nom_ajout = name.getText().toString();
         String date_ajout = date.getText().toString();
         String detail_ajout = detail.getText().toString();
-        System.out.println(nom_ajout);
-        System.out.println(date_ajout);
-        System.out.println(detail_ajout);
         db.addElement(nom_ajout, detail_ajout, date_ajout);
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);

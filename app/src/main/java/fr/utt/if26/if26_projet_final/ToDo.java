@@ -5,14 +5,24 @@ package fr.utt.if26.if26_projet_final;
  */
 
 public class ToDo {
+    Integer id;
     String name;
     String detail;
     String date;
 
-    public ToDo(String name, String detail, String date) {
+    public ToDo(Integer id, String name, String detail, String date) {
+        this.id = id;
         this.name = name;
         this.detail = detail;
         this.date = date;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

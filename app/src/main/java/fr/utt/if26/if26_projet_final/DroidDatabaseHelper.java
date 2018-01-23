@@ -59,7 +59,17 @@ public class DroidDatabaseHelper extends SQLiteOpenHelper {
         ArrayList<ToDo> todo= new ArrayList<ToDo>();
         Cursor result = db.rawQuery("SELECT * from "+TABLE_NAME , null);
         while(result.moveToNext()){
-            todo.add( new ToDo(result.getString(result.getColumnIndex(COLUMN_NAME)), result.getString(result.getColumnIndex(COLUMN_DETAIL)),result.getString(result.getColumnIndex(COLUMN_DATE))));
+            todo.add( new ToDo(result.getInt(result.getColumnIndex("_id")), result.getString(result.getColumnIndex(COLUMN_NAME)), result.getString(result.getColumnIndex(COLUMN_DETAIL)),result.getString(result.getColumnIndex(COLUMN_DATE))));
+        }
+        return todo;
+    }
+
+    public ArrayList<ToDo> getOneData(int position) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<ToDo> todo= new ArrayList<ToDo>();
+        Cursor result = db.rawQuery("SELECT * from "+TABLE_NAME + " WHERE _id = " + position, null);
+        while(result.moveToNext()){
+            todo.add( new ToDo(result.getInt(result.getColumnIndex("_id")),result.getString(result.getColumnIndex(COLUMN_NAME)), result.getString(result.getColumnIndex(COLUMN_DETAIL)),result.getString(result.getColumnIndex(COLUMN_DATE))));
         }
         return todo;
     }
@@ -82,6 +92,30 @@ public class DroidDatabaseHelper extends SQLiteOpenHelper {
                 "id = ? ",
                 new String[]{Integer.toString(id)});
     }*/
+
+    public void clearDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String clearDBQuery = "DELETE FROM "+ TABLE_NAME;
+        db.execSQL(clearDBQuery);
+    }
+
+    public boolean isNotEmpty() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Boolean rowExists;
+
+        if (mCursor.moveToFirst())
+        {
+            // DO SOMETHING WITH CURSOR
+            rowExists = true;
+
+        } else
+        {
+            // I AM EMPTY
+            rowExists = false;
+        }
+        return rowExists;
+    }
 
 
 }
