@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, modify_element.class);
                 // Pass listview item click position
                 i.putExtra("position", position+1);
+                // Pass listview item click position
+                i.putExtra("identifiant", selectedItem.getId());
                 // Open SingleItemView.java Activity
                 startActivity(i);
             }

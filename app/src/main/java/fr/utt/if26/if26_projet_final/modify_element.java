@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,8 +20,9 @@ import java.util.ArrayList;
 
 public class modify_element extends Activity {
 
-    int position;
+    int position, identifiant;
     ArrayList<ToDo> todo=null;
+    DroidDatabaseHelper db=null;
 
     EditText modify_name;
     EditText modify_detail;
@@ -35,7 +37,8 @@ public class modify_element extends Activity {
         Intent i = getIntent();
         // Get the listview item click position
         position = i.getExtras().getInt("position");
-        System.out.println("Position modify " + position);
+        identifiant = i.getExtras().getInt("identifiant");
+        System.out.println("Position modify+1 " + position);
 
         modify_name = (EditText)findViewById(R.id.modify_name);
         modify_detail = (EditText)findViewById(R.id.modify_detail);
@@ -45,7 +48,7 @@ public class modify_element extends Activity {
 
         System.out.println("bool " + !db.isNotEmpty());
         if(db.isNotEmpty()) {
-            todo = db.getOneData(position);
+            todo = db.getOneData(identifiant);
             System.out.println("Nom modify " + todo.get(0).getName());
 
             //Date du jour
@@ -57,6 +60,23 @@ public class modify_element extends Activity {
             modify_date.setText(dateFormat.format(date), TextView.BufferType.EDITABLE);
 
         }
+
+    }
+
+    public void updateElement(View v) {
+        db = new DroidDatabaseHelper(this);
+        //System.out.println("modifier name : "+ modify_name.getText());
+        db.updateData(identifiant, modify_name.getText().toString(), modify_detail.getText().toString(), modify_date.getText().toString());
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+
+    }
+
+    public void deleteElement(View v) {
+        db = new DroidDatabaseHelper(this);
+        db.deleteData(identifiant);
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
 
     }
 }

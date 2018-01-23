@@ -74,24 +74,24 @@ public class DroidDatabaseHelper extends SQLiteOpenHelper {
         return todo;
     }
 
-    /*public boolean updatePlates(int id, int number, int color, int place) {
+    public boolean updateData(int id, String name, String detail, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("c_number", number);
-        contentValues.put("c_Color", color);
-        contentValues.put("c_Place", place);
+        contentValues.put(COLUMN_NAME, name);
+        contentValues.put(COLUMN_DETAIL, detail);
+        contentValues.put(COLUMN_DATE, date);
 
-        db.update(TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(id)});
+        db.update(TABLE_NAME, contentValues, "_id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
 
-    public Integer deletePlates(Integer id) {
+    public Integer deleteData(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME,
-                "id = ? ",
+                "_id = ? ",
                 new String[]{Integer.toString(id)});
-    }*/
+    }
 
     public void clearDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
