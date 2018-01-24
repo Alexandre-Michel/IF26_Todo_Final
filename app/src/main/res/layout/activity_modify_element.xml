@@ -2,10 +2,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+
     <TextView
         android:id="@+id/label_modify_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:fontFamily="sans-serif"
         android:text="Quoi ?"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"

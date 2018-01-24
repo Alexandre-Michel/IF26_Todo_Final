@@ -1,21 +1,13 @@
 package fr.utt.if26.if26_projet_final;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
-import android.widget.AdapterView.OnItemClickListener;
-
 
 import java.util.ArrayList;
 
@@ -25,55 +17,39 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     DroidDatabaseHelper db=null;
     ArrayList<ToDo> todo=null;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = findViewById(R.id.simpleListView);
 
+        //On récupère le Toolbar et on le peuple
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setSubtitle("Rassembler vos tâches !");
+
+        //Appel de la DB
         db = new DroidDatabaseHelper(this);
         //db.clearDatabase();
 
-
         // Inserting Rows
-        Log.d("Insert: ", "Inserting ..");
-        //db.addElement("Test","Blue","21/01/2018");
-        //db.addElement("Tes22t","Red","21/01/2018");
-
         Log.d("Reading: ", "Reading all shops..");
         todo=db.getData();
 
+        //Appel de l'adapter
         myCustomAdapter= new MyCustomAdapter(this,R.layout.liste_detail,todo);
-
-        listView = findViewById(R.id.simpleListView);
         listView.setAdapter(myCustomAdapter);
-        //System.out.println("ALLLLLLE : " +db.getOneData(1).get(0).getName());
 
-        /*listView.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Intent i = new Intent(MainActivity.this, modify_element.class);
-                // Pass listview item click position
-                i.putExtra("position", position);
-                // Open SingleItemView.java Activity
-                startActivity(i);
-            }
-
-        });*/
-
+        //Mise en place d'un listener sur chaque item de la liste
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the selected item text from ListView
                 ToDo selectedItem = (ToDo)parent.getItemAtPosition(position);
-                System.out.println("Name todo " + selectedItem.getId());
-                System.out.println("ID position : " +listView.getItemIdAtPosition(position));
                 Intent i = new Intent(MainActivity.this, modify_element.class);
-                // Pass listview item click position
-                i.putExtra("position", position+1);
-                // Pass listview item click position
+                // Pass listview item click id
                 i.putExtra("identifiant", selectedItem.getId());
                 // Open SingleItemView.java Activity
                 startActivity(i);
@@ -81,11 +57,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Bouton de lancement de création d'une nouvelle tâche
     public void addNewElement(View v) {
         Intent i = new Intent(this, add_element.class);
         startActivity(i);
     }
 
+    //Swipe pour chaque Item - DEPRECATED
     /*SwipeMenuCreator creator = new SwipeMenuCreator() {
 
         @Override

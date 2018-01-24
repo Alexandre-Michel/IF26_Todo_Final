@@ -1,8 +1,9 @@
 package fr.utt.if26.if26_projet_final;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -16,11 +17,17 @@ public class add_element extends AppCompatActivity {
     AutoCompleteTextView name;
     EditText date;
     EditText detail;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_element);
+
+        //On récupère le Toolbar et on le peuple
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setSubtitle("Créer votre tâche !");
 
         name = findViewById(R.id.add_name);
         date = findViewById(R.id.add_date);
@@ -35,6 +42,7 @@ public class add_element extends AppCompatActivity {
     }
 
 
+    //Ajout d'un élément en BDD
     public void addElementToBD(View view) {
         DroidDatabaseHelper db = new DroidDatabaseHelper(this);
         String nom_ajout = name.getText().toString();

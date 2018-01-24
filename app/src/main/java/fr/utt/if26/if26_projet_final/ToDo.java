@@ -5,25 +5,19 @@ package fr.utt.if26.if26_projet_final;
  */
 
 public class ToDo {
-    Integer id;
-    String name;
-    String detail;
-    String date;
+    private Integer id;
+    private String name;
+    private String detail;
+    private String date;
 
-    public ToDo(Integer id, String name, String detail, String date) {
+    ToDo(Integer id, String name, String detail, String date) {
         this.id = id;
         this.name = name;
         this.detail = detail;
         this.date = date;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public Integer getId() { return id; }
 
     public String getName() {
         return name;
@@ -33,7 +27,7 @@ public class ToDo {
         this.name = name;
     }
 
-    public String getDetail() {
+    String getDetail() {
         return detail;
     }
 
@@ -41,7 +35,7 @@ public class ToDo {
         this.detail = detail;
     }
 
-    public String getDate() {
+    String getDate() {
         return date;
     }
 

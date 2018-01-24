@@ -6,12 +6,21 @@
     android:layout_height="match_parent"
     tools:context="fr.utt.if26.if26_projet_final.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
     <ListView
         android:id="@+id/simpleListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
         android:layout_marginBottom="57dp"></ListView>
 
     <Button
